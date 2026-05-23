@@ -1,5 +1,5 @@
 pipeline {
-    agent {
+    agent any{
         docker {
             image 'eclipse-temurin:17-jdk'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
