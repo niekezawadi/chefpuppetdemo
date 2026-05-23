@@ -13,10 +13,12 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:9090/api/products",
+          "raw": "http://host.docker.internal:9090/api/products",
           "protocol": "http",
           "host": [
-            "localhost"
+            "host",
+            "docker",
+            "internal"
           ],
           "port": "9090",
           "path": [
@@ -42,10 +44,12 @@
           }
         },
         "url": {
-          "raw": "http://localhost:9090/api/products",
+          "raw": "http://host.docker.internal:9090/api/products",
           "protocol": "http",
           "host": [
-            "localhost"
+            "host",
+            "docker",
+            "internal"
           ],
           "port": "9090",
           "path": [
@@ -66,10 +70,12 @@
           "raw": "{\n    \"name\": \"Laptop\",\n    \"price\": 999.99\n}"
         },
         "url": {
-          "raw": "http://localhost:9090/api/products/1",
+          "raw": "http://host.docker.internal:9090/api/products/1",
           "protocol": "http",
           "host": [
-            "localhost"
+            "host",
+            "docker",
+            "internal"
           ],
           "port": "9090",
           "path": [
