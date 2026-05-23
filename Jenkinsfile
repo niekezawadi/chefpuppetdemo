@@ -18,7 +18,7 @@ pipeline {
 
         stage('Acceptatietesten - Newman') {
             steps {
-                sh 'newman run "Tests/thesis collection.postman_collection.json" --env-var "baseUrl=http://host.docker.internal:9090"'
+                sh 'newman run "Tests/thesis collection.postman_collection.json" --env-var "baseUrl=http://docker-app-1:8080"'
             }
         }
 
