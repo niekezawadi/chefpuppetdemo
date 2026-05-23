@@ -1,0 +1,85 @@
+{
+  "info": {
+    "_postman_id": "8c4ffd7a-43ce-41c9-9459-ba3f5757c708",
+    "name": "thesis collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "45410265",
+    "_collection_link": "https://go.postman.co/collection/45410265-8c4ffd7a-43ce-41c9-9459-ba3f5757c708?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get alle producten",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST product aanmaken",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Laptop\",\n    \"price\": 999.99\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/api/products",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE product",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Laptop\",\n    \"price\": 999.99\n}"
+        },
+        "url": {
+          "raw": "http://localhost:9090/api/products/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "api",
+            "products",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
