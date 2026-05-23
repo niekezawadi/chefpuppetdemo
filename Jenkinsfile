@@ -18,7 +18,10 @@ pipeline {
 
         stage('Acceptatietesten - Newman') {
             steps {
-                sh 'newman run "Tests/thesis collection.postman_collection.json" --env-var "baseUrl=http://docker-app-1:8080"'
+                sh '''
+                    APP_IP=$(docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" docker-app-1)
+                    newman run "Tests/thesis collection.postman_collection.json" --env-var "baseUrl=http://$APP_IP:8080"
+                '''
             }
         }
 
