@@ -1,0 +1,19 @@
+---
+driver:
+  name: docker
+  use_sudo: false
+provisioner:
+  name: chef_infra
+  always_update_cookbooks: true
+verifier:
+  name: inspec
+platforms:
+  - name: ubuntu-22.04
+suites:
+  - name: default
+    run_list:
+      - recipe[springboot-app::default]
+    verifier:
+      inspec_tests:
+        - test/integration/default
+    attributes:
