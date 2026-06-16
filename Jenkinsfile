@@ -12,22 +12,30 @@ pipeline {
             steps {
                 sh 'cd Docker && docker-compose down -v || true'
                 sh 'cd Docker && docker-compose up -d --build'
-                sh 'sleep 15'
+                sh '''
+                    echo "Wachten tot app klaar is..."
+                    for i in $(seq 1 30); do
+                        STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://host.docker.internal:9090/api/products 2>/dev/null || echo "000")
+                        echo "Poging $i/30 - HTTP status: $STATUS"
+                        if [ "$STATUS" = "200" ] || [ "$STATUS" = "404" ]; then
+                            echo "App is klaar!"
+                            break
+                        fi
+                        sleep 3
+                    done
+                '''
             }
         }
 
         stage('Acceptatietesten - Newman') {
             steps {
-                sh '''
-                    APP_IP=$(docker inspect -f "{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}" docker-app-1)
-                    newman run "Tests/thesis collection.postman_collection.json" --env-var "baseUrl=http://$APP_IP:8080"
-                '''
+                sh 'newman run "Tests/thesis collection.postman_collection.json" --env-var "baseUrl=http://host.docker.internal:9090"'
             }
         }
 
         stage('Docker - Stop omgeving') {
             steps {
-                sh 'cd Docker && docker-compose down -v'
+                sh 'cd Docker && docker-compose down -v || true'
             }
         }
     }
